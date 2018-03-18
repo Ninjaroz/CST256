@@ -4,7 +4,7 @@
 	<form action="verifyUser" method='POST'>
 		<fieldset>
 			@if(!empty(Session::get('user')))
-			@include('userViews.verifyUser')>
+			@include('userViews.verifyUser')
 			@else
 			<legend>Login Now!</legend>
 			@endif

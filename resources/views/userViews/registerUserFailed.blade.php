@@ -5,6 +5,7 @@
     		<h1>Registration Page</h1>
         	<h2>Create Your New Account By Filling Out The Information Below</h2>
         	<fieldset>
+	        	<legend style="color: red;">User already exists please try a different user</legend>	
             	<p><label><b>Name:</b></label>
                 <input type="text" id="Name" name="name" required></p>
             	<p><label><b>Username:</b></label>
