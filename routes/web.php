@@ -1,8 +1,13 @@
+
 <?php
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
+Project Name: Networking Site v1
+Developer: Gary Sundquist
+3/18/18
+This is the web routes class that handles all page view routing
 */
 use Illuminate\Http\Request as Request;
 use App\Http\Controllers\user\userController;
