@@ -22,8 +22,10 @@ class userController extends Controller{
 		->where('password', $request->input('password'))->count();
 		if ($results>0){
 			session(['user' => $request->input('userName')]);
+			return true;
 		}else{
 			session(['user' => null]);
+			return false;
 		}
 	}
 	
@@ -31,26 +33,23 @@ class userController extends Controller{
 	public static function logoutAuth(){
 		session(['user' => null]);
 	}
-	
+		
 	//Registers user
 	public static function registerUser(Request $request){
-				if (!checkUser){
-				$user = User::create(
-		 		['name' => $request->input('name'),
-		 		'userName' => $request->input('userName'),
-		 		'password' => $request->input('password'),
-		 		'fk_role_id' => 1,
-		 		'address' => $request->input('address')]
-		 		);	
-				}else{
-					return false;	
-				}
+					$user = User::create(
+		 			['name' => $request->input('name'),
+		 			'userName' => $request->input('userName'),
+		 			'password' => $request->input('password'),
+		 			'fk_role_id' => 1,
+		 			'address' => $request->input('address')]
+		 			);				
 	}
 	
 	//Checks if a user exists
 	public static function checkUser(Request $request){
-	if (User::where('userName', '=', $request->input('userName'))){
-		return true;
-	}else return false;
+		$user = User::where('userName', '=', $request->input('userName'))->first();
+		if ($user != null){
+			return true;
+		}else return false;
 	}
 }
