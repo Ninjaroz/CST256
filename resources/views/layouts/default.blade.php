@@ -1,3 +1,10 @@
+<!-- 
+Project Name: Networking Site v1
+Developer: Gary Sundquist
+3/18/18
+Default page layout
+ -->
+
 <!doctype html>
 
 <html>
