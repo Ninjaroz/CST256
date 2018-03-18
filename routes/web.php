@@ -43,11 +43,12 @@ Route::get('register', function(){
 //Confim registration page
 
 Route::post('registerPost', function(Request $request){
-		if(userController::registerUser($request)){
+		if (!userController::checkUser($request)){
+		userController::registerUser($request);
 		userController::loginAuth($request);
 		return View::make('userViews.userRegistered');
-		}else{
-		//TODO: Return userName already taken 
+		}else{ 
+		return View::make('userViews.registerUserFailed');
 		}
 		
 });
