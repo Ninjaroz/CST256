@@ -1,3 +1,9 @@
+<!-- 
+Project Name: Networking Site v1
+Developer: Gary Sundquist
+3/18/18
+This page is a view showing that a user is already logged in
+ -->
 @extends('layouts.default')
 @section('content')
 

@@ -1,3 +1,9 @@
+<!-- 
+Project Name: Networking Site v1
+Developer: Gary Sundquist
+3/18/18
+This page is a view for the registration page if the user already exists
+ -->
 @extends('layouts.default')
 @section('content')
 <form action = "registerPost" method="POST">

@@ -1,3 +1,10 @@
+<!-- 
+Project Name: Networking Site v1
+Developer: Gary Sundquist
+3/18/18
+This page is a view for the failed login page
+ -->
+ 
 @extends('layouts.default')
 @section('content')
 <center>
