@@ -1,5 +1,10 @@
 <?php
-
+/*
+ * Project Name: Networking Site v1
+ * Developer: Gary Sundquist
+ * 3/18/18
+ * This is the model for the user table
+ */
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
