@@ -9,8 +9,9 @@ Developer: Gary Sundquist
 3/18/18
 This is the web routes class that handles all page view routing
 */
-use Illuminate\Http\Request as Request;
-use App\Http\Controllers\user\userController;
+
+use App\Http\Controllers\userController;
+use App\Http\Controllers\managementController;
 
 //Shows the home page
 Route::get('/', function () {
@@ -18,44 +19,44 @@ Route::get('/', function () {
 	return View::make('home');
 });
 
-//Shows the login page
-Route::get('login', function () {
-		//shows the login page (resources/views/userAuth/login.blade.php)
-		return View::make('userViews.login');
-});
+/*
+ * 
+ * USERCONTROLLER
+ * 
+ */
 
-//Shows verifyUser page
-Route::post('verifyUser', function (Request $request) {
-		//Adds user to session
-		userController::loginAuth($request);
-		//shows the verifyUser page (resources/views/userAuth/verifyUser.blade.php)
-		return View::make('userViews.verifyUser');
-});
+//shows the login page (resources/views/userViews/login.blade.php)
+Route::get('login', 'userController@getLogin');
 
-//Shows the logout page
-Route::get('logout', function () {
-		//removes user from session
-		userController::logoutAuth();
-		//shows the logout page (resources/views/userAuth/logout.blade.php)
-		return View::make('userViews.logout');
-});
+//Shows verifyUser page (resources/views/userViews/verifyUser.blade.php)
+Route::post('verifyUser', 'userController@loginAuth');
 
-//User registration page
-Route::get('register', function(){
-		return View::make('userViews.registerUser');
-});
+//shows the logout page (resources/views/userViews/logout.blade.php)
+Route::get('logout', 'userController@userLogout');
 
-//Confim registration page
+//User registration page (resources/views/userViews/registerUser.blade.php)
+Route::get('register', 'userController@getRegister');
 
-Route::post('registerPost', function(Request $request){
-		if (!userController::checkUser($request)){
-		userController::registerUser($request);
-		userController::loginAuth($request);
-		return View::make('userViews.userRegistered');
-		}else{ 
-		return View::make('userViews.registerUserFailed');
-		}
-		
-});
+//Confim registration page (resources/views/userViews/userRegistered.blade.php)
+Route::post('registerPost', 'userController@registerUser');
+
+//User profile page (resources/views/userViews/userProfile.blade.php)
+Route::get('userProfile', 'userController@getUserProfile');
+
+//Updates user profile and posts back to user profile page
+Route::post('updateUserProfile', 'userController@updateUserProfile');
+
+/*
+ * 
+ * MANAGEMENTCONTROLLER
+ * 
+ */
+
+//Admin management page (resources/views/management/adminManagement.blade.php)
+Route::get('adminManagement', 'managementController@getAdminManagement');
+
+Route::post('adminManagementDeleteUser', 'managementController@deleteUser');
+
+Route::post('adminManagementSuspendUser', 'managementController@suspendUser');
 
 ?>
