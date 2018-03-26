@@ -5,4 +5,10 @@
 <div class="navbar">
 <a href="/">Home</a>
 <a href="/login">Login</a>
+@if(!empty(Session::get('user')))
+<a href="/userProfile">Profile</a>
+@endif
+@if(!empty(Session::get('user')) AND Session::get('userPermissions') == 2)
+	<a href="/adminManagement">Admin Panel</a>
+@endif
 </div>

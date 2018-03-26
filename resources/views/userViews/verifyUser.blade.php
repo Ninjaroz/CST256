@@ -13,12 +13,12 @@ This page is a view showing that a user is already logged in
 @if(!empty(Session::get('user')))
 <fieldset>
 	<legend>Successful login</legend>
-	<p>You are logged in as: {{ Session::get('user')}}</p>
+	<p>You are logged in as: {{Session::get('user')}}</p>
 	<p><a href="{{ url('logout') }}">Log out</a></p>
-	<a href="userspage.php">Continue to your Dashboard</a>
+	<a href="{{ url('userProfile') }}">Continue to your Dashboard</a>
 </fieldset>
 @else 
-	@include('userViews.failedLogin')
+	@include('userViews.login')
 </center>
 @endif	
 @stop 

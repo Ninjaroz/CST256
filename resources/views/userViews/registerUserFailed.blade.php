@@ -18,9 +18,15 @@ This page is a view for the registration page if the user already exists
                 <input type="text" id="UserName" name="userName" required></p>
             	<!--cannot be duplicate of another user-->
 				<p><label><b>Password:</b></label>
-                <input type="text" id="password" name="password" pattern=".{8,}"   required title="8 characters minimum" required></p>  
+                <input type="password" id="password" name="password" pattern=".{8,}"   required title="8 characters minimum" required></p>  
              	<p><label><b>Address:</b></label>
                 <input type="text" id="address" name="address" required></p>  
+                <label for="selectRole">Select Role:</label>
+				<select id="selectRole" name="selectRole" style="width:175px; height:25px;">
+				@foreach($roles as $role)
+					<option value="{{$role->role_id}}">{{$role->role}}</option>
+				@endforeach
+				</select>	
                 {{ csrf_field() }}
         	</fieldset>
         	<h4>Once Complete, Click the Button Below</h4>
