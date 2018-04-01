@@ -59,4 +59,8 @@ Route::post('adminManagementDeleteUser', 'managementController@deleteUser');
 
 Route::post('adminManagementSuspendUser', 'managementController@suspendUser');
 
+Route::post('adminManagementCreateJobPosting', 'managementController@createJobPosting');
+
+Route::post('adminManagementDeleteJobPosting','managementController@DeleteJobPosting');
+
 ?>
