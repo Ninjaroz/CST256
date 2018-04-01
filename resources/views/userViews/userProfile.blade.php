@@ -42,7 +42,17 @@ This page is a view for the user to update their profile
 				<legend><h2>Skills</h2></legend>
 				<p><label for="skills">Skills:</label>
 				<textarea rows="4" cols="50" name="skills" placeholder="Enter your skills here">{{$results->skills}}</textarea></p>							
-			</fieldset>				
+			</fieldset>		
+			<fieldset>
+				<legend><h2>Education</h2></legend>
+				<p><label for="education">Education:</label>
+				<textarea rows="4" cols="50" name="education" placeholder="Enter your education here">{{$results->education}}</textarea></p>							
+			</fieldset>	
+			<fieldset>
+				<legend><h2>Job Experience</h2></legend>
+				<p><label for="jobExperience">Job Experience:</label>
+				<textarea rows="4" cols="50" name="jobExperience" placeholder="Enter your job experience here">{{$results->job_experience}}</textarea></p>							
+			</fieldset>							
 			{{ csrf_field() }}
 		</fieldset>
 		<button type="Submit">Update</button>
