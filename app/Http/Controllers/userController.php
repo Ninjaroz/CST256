@@ -133,7 +133,10 @@ class userController extends Controller{
 							'email' => $request->input('email'),
 							'address' => $request->input('address'),
 							'background' => $request->input('background'),
-							'skills' => $request->input('skills')]);
+							'skills' => $request->input('skills'),
+							'education' => $request->input('education'),
+							'job_experience' => $request->input('jobExperience')	
+					]);
 			}else{
 				DB::table('users')
 					->where('userName', Session('user'))
@@ -142,7 +145,10 @@ class userController extends Controller{
 							'email' => $request->input('email'),
 							'address' => $request->input('address'),
 							'background' => $request->input('background'),
-							'skills' => $request->input('skills')]);
+							'skills' => $request->input('skills'),
+							'education' => $request->input('education'),
+							'job_experience' => $request->input('jobExperience')
+					]);
 			}
 			return $this->getUserProfile();
 		}else{

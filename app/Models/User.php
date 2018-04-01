@@ -6,13 +6,17 @@
  * This is the model for the user table
  */
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
 {
 	//Defining user table
 	protected $table = 'users';
-	protected $fillable = ['userName', 'password','name','fk_role_id','address'];
+	protected $fillable = ['userName', 'password','name','fk_role_id',
+						   'address','background','email','skills','enabled',
+						   'job_experience', 'education'
+	];
 	protected $keyType = 'String';
 	public $timestamps = false;
 	

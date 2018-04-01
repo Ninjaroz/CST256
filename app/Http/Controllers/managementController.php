@@ -11,6 +11,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Roles;
+use App\Models\JobPosting;
 use Illuminate\Http\Request;
 
 class managementController extends Controller{	
@@ -25,7 +26,8 @@ class managementController extends Controller{
 public function getAdminManagement(){
 		//Gets all user data
 		$users = User::all();
-		return view('management.adminManagement')->with('users', $users);
+		$jobPostings = JobPosting::all();
+		return view('management.adminManagement',compact('users', 'jobPostings'));
 }
 
 public function deleteUser(Request $request){
@@ -44,8 +46,24 @@ public function suspendUser(Request $request){
 
 /*
  * 
- * 
+ * Job Posting
  * 
  */
+
+//Create job posting
+public function createJobPosting(Request $request){
+	JobPosting::create(
+			['name' => $request->input('newJobPosting'),
+			 'description' => $request->input('newJobDescription')]
+			);	
+	return $this->getAdminManagement();
+}
+
+//Delete job posting
+public function deleteJobPosting(Request $request){
+	$delJob = JobPosting::find($request->input('jobID'));
+	$delJob->delete();
+	return $this->getAdminManagement();
+}
 
 }
