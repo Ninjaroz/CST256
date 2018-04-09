@@ -12,6 +12,7 @@ This is the web routes class that handles all page view routing
 
 use App\Http\Controllers\userController;
 use App\Http\Controllers\managementController;
+use App\Http\Controllers\jobPostingController;
 
 //Shows the home page
 Route::get('/', function () {
@@ -61,6 +62,23 @@ Route::post('adminManagementSuspendUser', 'managementController@suspendUser');
 
 Route::post('adminManagementCreateJobPosting', 'managementController@createJobPosting');
 
-Route::post('adminManagementDeleteJobPosting','managementController@DeleteJobPosting');
+Route::post('adminManagementDeleteJobPosting','managementController@deleteJobPosting');
+
+Route::post('adminManagementDeleteAffinityGroup', 'managementController@deleteAffinityGroup');
+
+Route::post('adminManagementCreateAffinityGroup', 'managementController@createAffinityGroup');
+
+Route::post('adminManagementUpdateAffinityGroup', 'managementController@updateAffinityGroup');
+
+/*
+ * 
+ * Job Search
+ * 
+ */
+
+Route::get('jobPostings', 'jobPostingController@getjobPosting');
+Route::post('jobPostingsSearch', 'jobPostingController@displayJobPostings');
+
+Route::get('testJob','jobPostingController@getTestJob');
 
 ?>
