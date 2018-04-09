@@ -1,10 +1,12 @@
 <div class="logo">
 <h1>CST256</h1>
 </div>
-<!-- TODO: display active class depending on which page the user is currently on -->
+<!--  Token stuff to satisfy laravel framework post requirements -->
+<meta name="csrf-token" content="{{Session::token() }}">
 <div class="navbar">
 <a href="/">Home</a>
 <a href="/login">Login</a>
+<a href="/jobPostings">Job Postings</a>
 @if(!empty(Session::get('user')))
 <a href="/userProfile">Profile</a>
 @endif
