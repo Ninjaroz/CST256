@@ -11,6 +11,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Roles;
+use App\Models\AffinityGroup;
 use Illuminate\Http\Request;
 
 class userController extends Controller{
@@ -99,11 +100,13 @@ class userController extends Controller{
 		
 	//returns user profile page
 	public function getUserProfile(){
-		$results = DB::table('users')
+		$user = DB::table('users')
 		->where('userName', Session('user'))
 		->first();
-		if (isset($results)){
-			return view('userViews.userProfile')->with('results',$results);
+		if (isset($user)){
+			//gets list of groups to load in with user profile
+			$affinityGroups = AffinityGroup::all(); 
+			return view('userViews.userProfile',compact('user','affinityGroups'));
 		}else{
 		//if we cannot pull up user data to load profile page
 		return view('userViews.failedLogin');
@@ -136,7 +139,7 @@ class userController extends Controller{
 							'skills' => $request->input('skills'),
 							'education' => $request->input('education'),
 							'job_experience' => $request->input('jobExperience')	
-					]);
+					]);							
 			}else{
 				DB::table('users')
 					->where('userName', Session('user'))
@@ -150,11 +153,22 @@ class userController extends Controller{
 							'job_experience' => $request->input('jobExperience')
 					]);
 			}
+			//checks if affinityGroup exists and if it does updates affinityGroup
+			if(AffinityGroup::find($request->affinityGroup)){
+				User::where('userName', Session('user'))
+				->update(['affinity_group' => $request->affinityGroup]);
+			}
+
 			return $this->getUserProfile();
 		}else{
 			//If we cannot validate user password provided it reloads page
 			return $this->getUserProfile();
 		}
 	}
+	
+	
+	
+	
+
 
 }
