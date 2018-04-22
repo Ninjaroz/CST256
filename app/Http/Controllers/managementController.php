@@ -54,7 +54,9 @@ public function suspendUser(Request $request){
 public function createJobPosting(Request $request){
 	JobPosting::create(
 			['name' => $request->input('newJobPosting'),
-			 'description' => $request->input('newJobDescription')]
+			 'description' => $request->input('newJobDescription'),
+			 'date' => now()
+			]
 			);	
 	return $this->getAdminManagement();
 }

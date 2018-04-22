@@ -13,6 +13,7 @@ use App\Models\User;
 use App\Models\Roles;
 use App\Models\AffinityGroup;
 use Illuminate\Http\Request;
+use Session;
 
 class userController extends Controller{
 
@@ -32,8 +33,8 @@ class userController extends Controller{
 		->where('password', $request->input('password'))
 		->first();
 		if (isset($results)){
-			session(['user' => $results->userName]);
-			session(['userPermissions' => $results->fk_role_id]);
+			session::put('user', $results->userName);
+			session::put('userPermissions', $results->fk_role_id);
 			return view('userViews.verifyUser');
 		}else{
 			session(['user' => null]);

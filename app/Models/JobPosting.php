@@ -13,8 +13,8 @@ class JobPosting extends Model
 {
 	//Defining user table
 	protected $table = 'job_posting';
-	protected $fillable = ['idjob_posting','name','description'
-	];
+	protected $fillable = ['idjob_posting','name','description','date',
+			  'salary','type'];
 	public $timestamps = false;
 	
 	//Setting primarykey and setting incrementing to true
