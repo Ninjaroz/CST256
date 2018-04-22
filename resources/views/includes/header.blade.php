@@ -9,6 +9,7 @@
 <a href="/jobPostings">Job Postings</a>
 @if(!empty(Session::get('user')))
 <a href="/userProfile">Profile</a>
+<a href="/jobCart">Job Cart</a>
 @endif
 @if(!empty(Session::get('user')) AND Session::get('userPermissions') == 2)
 	<a href="/adminManagement">Admin Panel</a>
