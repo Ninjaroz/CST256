@@ -6,7 +6,7 @@
 |--------------------------------------------------------------------------
 Project Name: Networking Site v1
 Developer: Gary Sundquist
-3/18/18
+4/22/18
 This is the web routes class that handles all page view routing
 */
 
@@ -77,8 +77,21 @@ Route::post('adminManagementUpdateAffinityGroup', 'managementController@updateAf
  */
 
 Route::get('jobPostings', 'jobPostingController@getjobPosting');
+
 Route::post('jobPostingsSearch', 'jobPostingController@displayJobPostings');
 
 Route::get('testJob','jobPostingController@getTestJob');
+
+Route::post('addToJobCart', 'jobPostingController@addToJobCart');
+
+/*
+ * 
+ * Job Cart
+ *  
+ */
+
+Route::get('jobCart', 'jobPostingController@viewJobCart');
+
+Route::get('apply','jobPostingController@apply');
 
 ?>
