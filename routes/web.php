@@ -70,6 +70,8 @@ Route::post('adminManagementCreateAffinityGroup', 'managementController@createAf
 
 Route::post('adminManagementUpdateAffinityGroup', 'managementController@updateAffinityGroup');
 
+Route::post('adminManagementGetAffinityGroupDescription', 'managementController@getAffinityGroupDescription');
+
 /*
  * 
  * Job Search
@@ -83,6 +85,8 @@ Route::post('jobPostingsSearch', 'jobPostingController@displayJobPostings');
 Route::get('testJob','jobPostingController@getTestJob');
 
 Route::post('addToJobCart', 'jobPostingController@addToJobCart');
+
+Route::post('removeFromJobCart','jobPostingController@removeFromJobCart');
 
 /*
  * 
