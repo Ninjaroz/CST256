@@ -35,7 +35,6 @@ Job seach page
 	});
 
 	function addToJobCard(objButton){
-		alert("clicked! "+ objButton.value);
 		$.ajax({
 	  	type: 'POST',
 	  	url: "addToJobCart",

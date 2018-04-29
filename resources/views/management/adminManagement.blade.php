@@ -11,6 +11,27 @@ This page is a view for the admininstrator management of users
 
 <script>
 
+	//Updates affinity Group description
+	function getAffinityDescription(){
+		var groupName = document.getElementById("affinityGroup").value;
+		$.ajax({
+		  	type: 'POST',
+		  	url: "adminManagementGetAffinityGroupDescription",
+		  	data: {
+			  	   '_token': $('meta[name=csrf-token]').attr('content'),
+			  	   name: groupName,
+				   },	
+		  		success: function(data){
+		  			var groupData = JSON.parse(JSON.stringify(data));
+			  		if (groupData != ""){
+						$("#affinityGroupDesc").text(groupData[0].description);
+		  			}else{
+		  				$("#affinityGroupDesc").text("");
+		  			}
+		  		}
+        	});
+	}
+
 	//delete user validation
 	function ValidateDeleteUser(){
 		if (window.confirm("Are you sure you want to delete this user?")){
@@ -48,7 +69,7 @@ This page is a view for the admininstrator management of users
 				  	   name: groupName,
 					   description: desc
 					   },	
-			  	success: function(data){
+			  	success: function(){
 			  	}
 	        });
 		}
@@ -62,7 +83,7 @@ This page is a view for the admininstrator management of users
 				  	   '_token': $('meta[name=csrf-token]').attr('content'),
 				  	   name: groupName,
 					   },	
-			  	success: function(data){
+			  	success: function(){
 				  	
 			  	}
 	        });
@@ -133,7 +154,13 @@ This page is a view for the admininstrator management of users
         			<legend><h2>New Job Posting</h2></legend>
         			<form action="adminManagementCreateJobPosting" method="post">
         				<p><label for="newJobPosting">Name:</label>
-						<input type="Text" name="newJobPosting" placeholder="Job name" size="30"/></p>
+						<input type="Text" name="newJobPosting" placeholder="Job name" size="30" required title="Please enter in a job title"/></p>
+						<p><label for="url">URL:</label>
+						<input type="Text" name="url" placeholder="url" size="30"/></p>
+						<p><label for="type">Location:</label>
+						<input type="Text" name="type" placeholder="Job Location" size="30"/></p>
+						<p><label for="salary">Salary:</label>
+						<input type="number" name="salary" placeholder="Salary" size="30"/></p>
         				<p><label for="newJobDescription">Description:</label>
 						<textarea rows="4" cols="50" name="newJobDescription" placeholder="Enter your job description here"></textarea></p>
     					{{ csrf_field() }}
@@ -146,7 +173,7 @@ This page is a view for the admininstrator management of users
         	<fieldset>
         		<legend><h2>Affinity Group Mangement</h2></legend>
         		<label for="affinityGroup">Name:</label>
-				<input list="affinityGroups" id="affinityGroup">
+				<input list="affinityGroups" id="affinityGroup" onchange="getAffinityDescription()">
 					<datalist id="affinityGroups">
 					@foreach($affinityGroups as $affinityGroup)
 					<option value="{{$affinityGroup->name}}"></option>

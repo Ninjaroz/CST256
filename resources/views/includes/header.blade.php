@@ -1,6 +1,7 @@
 <div class="logo">
 <h1>CST256</h1>
 </div>
+
 <!--  Token stuff to satisfy laravel framework post requirements -->
 <meta name="csrf-token" content="{{Session::token() }}">
 <div class="navbar">

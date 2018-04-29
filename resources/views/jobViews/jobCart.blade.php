@@ -7,6 +7,26 @@ Job Cart page
 @extends('layouts.default')
 @section('content')
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+
+function removeJob(jobID){
+	$.ajax({
+	  	type: 'POST',
+	  	url: "removeFromJobCart",
+	  	data: {
+		  	   '_token': $('meta[name=csrf-token]').attr('content'),
+		  	   jobID: jobID
+			   },	
+	  		success: function(){  		  	
+
+	  		}
+    	});
+}
+
+
+</script>
 <center>
     <table id="jobsTable">
 		<thead>
@@ -14,6 +34,7 @@ Job Cart page
     			<th style="padding-right:15px;">Job Title</th>
     			<th style="padding-right:15px;">Job Description</th>
     			<th style="padding-right:15px;">Apply</th>
+    			<th style="padding-right:15px;">Remove</th>
     		</tr>
     	</thead>
     	<tr>
@@ -24,6 +45,7 @@ Job Cart page
     			<td>{{$job[0]->name}}</td>
     			<td>{{$job[0]->description}}</td>
     			<td><a href="apply">Apply</a></td>
+    			<td><button onclick="removeJob({{$job[0]->idjob_posting}})">Remove Job</button></td>
     		@endforeach
     	@else
     		
