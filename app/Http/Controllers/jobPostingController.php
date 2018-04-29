@@ -35,8 +35,19 @@ class jobPostingController extends Controller{
 	
 	//adds jobs to the job cart
 	public function addToJobCart(Request $request){
+		
+		
 		$job = $request->job;
 		Session::push('jobCart', $job);
+	}
+	
+	//removes job from the job cart
+	public function removeFromJobCart(Request $request){
+		$jobs = session()->pull('jobCart', []); 
+		if(($key = array_search($request->jobID, $jobs)) !== false) {
+			unset($jobs[$key]);
+		}
+		session()->put('jobCart', $jobs);
 	}
 		
 	//view job cart page

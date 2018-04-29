@@ -55,7 +55,10 @@ public function createJobPosting(Request $request){
 	JobPosting::create(
 			['name' => $request->input('newJobPosting'),
 			 'description' => $request->input('newJobDescription'),
-			 'date' => now()
+			 'date' => now(),
+			 'url'  => $request->input('url'),
+			 'type' => $request->input('type'),
+			 'salary' => $request->input('salary')
 			]
 			);	
 	return $this->getAdminManagement();
@@ -89,6 +92,12 @@ public function updateAffinityGroup(Request $request){
 	AffinityGroup::where('name', $request->name)
 	->update(['description' => $request->description]);
 	return $this->getAdminManagement();
+}
+
+//Returns affinity group description
+public function getAffinityGroupDescription(Request $request){
+	return AffinityGroup::where('name', $request->name)
+	->get();
 }
 
 
